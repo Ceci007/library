@@ -31,7 +31,7 @@ const addBookToLibrary = () => {
   let title = $titleInput.value;
   let author = $authorInput.value;
   let pages = $pagesInput.value;
-  let read;
+  let read = getReadValue();
 
   let newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
@@ -44,6 +44,14 @@ const populateStorage = () => {
 
 const getStorage = () => {
   myLibrary = JSON.parse(localStorage.getItem('library'));
+}
+
+const getReadValue = () => {
+  if ($form.querySelector('input[name="read"]:checked').value == "yes") {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 const toggleHiddenElements = () => {
@@ -65,6 +73,17 @@ const clearForm = () => {
   $titleInput.value = '';
   $authorInput.value = '';
   $pagesInput = '';
+}
+
+const createReadStatusTd = book => {
+  let $readStatusTd = document.createElement('td');
+  let $readStatusButton = document.createElement('button');
+  $readStatusButton.textContent = 'Change Status';
+  $readStatusButton.addEventListener('click', () => { book.read = !book.read;
+    updateTable();
+  })
+  $readStatusTd.appendChild($readStatusButton);
+  return $readStatusTd;
 }
 
 const removeFromLibrary = index => {
@@ -94,9 +113,10 @@ const updateTable = () => {
      Object.keys(book).forEach( prop => {
       let $newTd = document.createElement('td');
       $newTd.textContent = book[prop];
+      if (prop == 'read') $newTd.textContent = book[prop] ? 'read' : 'not read';
       $row.appendChild($newTd);
      });
-
+     $row.appendChild(createReadStatusTd(book));
      $row.appendChild(createDeleteTd(index));
      $tbody.appendChild($row);
   });
@@ -111,8 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $submitButton.addEventListener('click', () => {
     // if validation
     addBookToLibrary();
-    toggleHiddenElements();
     updateTable();
+    toggleHiddenElements();
+    
     // some more stuff
   })
 
@@ -126,5 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     getStorage();
   }
+  updateTable();
 })
 
