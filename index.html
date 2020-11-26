@@ -18,17 +18,37 @@
         <thead>
           <th>Title</th>
           <th>Author</th>
+          <th>Pages</th>
+          <th>Read</th>
+          <th>Status</th>
+          <th>Delete</th>
         </thead>
         <tbody>
           <td>TitleData</td>
           <td>AuthorData</td>
+          <td>PagesData</td>
+          <td>ReadData</td>
+          <td><button class="btn">Change status</button></td>
+          <td><button class="btn">Delete</button></td>
         </tbody>
       </table>
     </div>
     <div class="form hidden">
       <h2>Adding Books</h2>
       <input type="text" id="title" placeholder="Title" />
-      <input type="text" id="author" placeholder="Author" />
+      <input type="text" id="author" placeholder="Author" /> 
+      <input type="number" id="pages" placeholder="pages" min="1" />
+      <fieldset role="radiogroup">
+        <legend>Did you Read this book?</legend>
+        <label for="yes">
+          <input type="radio" id="yes" name="read" value="yes" checked />
+          <span>yes</span>
+        </label>
+        <label for="no">
+          <input type="radio" id="no" name="read" value="yes" />
+          <span>no</span>
+        </label>
+      </fieldset>
       <div class="button-group">
         <button id="submit" class="btn">Submit</button>
         <button id="return" class="btn">Return</button>
