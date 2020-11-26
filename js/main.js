@@ -1,8 +1,20 @@
 let myLibrary = [
   {
     title: "Harry Potter",
-    author: "J.K Rowling",
-    pages: 100,
+    author: "J.K. Rowling",
+    pages: 200,
+    read: false
+  }, 
+  {
+    title: "Game of thrones",
+    author: "George R.R. Martin",
+    pages: 500,
+    read: true
+  }, 
+  {
+    title: "Emma",
+    author: "Jane Austen",
+    pages: 150,
     read: false
   }
 ];
@@ -60,10 +72,29 @@ const toggleHiddenElements = () => {
   $newButton.classList.toggle('hidden');
 }
 
+const addError = el => {
+  let $spanError = document.createElement('span');
+  $spanError.textContent = `Please enter a ${el.id}`;
+  $spanError.id = `${el.id}Error`;
+  $spanError.classList.add('errorText');
+  $form.insertBefore($spanError, el);
+
+  el.classList.add('errorInput');
+  el.addEventListener('input', removeError );
+}
+
+const removeError = el => {
+  if(el.target.value != '') {
+    el.target.removeEventListener('input', removeError);
+    el.target.classList.remove('errorInput');
+    document.querySelector(`#${el.target.id}Error`).remove();
+  }
+}
+
 const validateForm = () => {
-  if ($titleInput.value == "" && document.querySelector('#titleError') == null);
-  if ($authorInput.value == "" && document.querySelector('#authorError') == null);
-  if($pagesInput.value == "" && document.querySelector('#pagesError') == null);
+  if ($titleInput.value == "" && document.querySelector('#titleError') == null) addError($titleInput);
+  if ($authorInput.value == "" && document.querySelector('#authorError') == null) addError($authorInput);
+  if($pagesInput.value == "" && document.querySelector('#pagesError') == null) addError($pagesInput);
 
   if ($titleInput.value == "" || $pagesInput.value == "" || $authorInput.value == "") return false;
   else return true;
@@ -72,14 +103,16 @@ const validateForm = () => {
 const clearForm = () => {
   $titleInput.value = '';
   $authorInput.value = '';
-  $pagesInput = '';
+  $pagesInput.value = '';
 }
 
 const createReadStatusTd = book => {
   let $readStatusTd = document.createElement('td');
   let $readStatusButton = document.createElement('button');
+  $readStatusButton.classList.add('btn-change');
   $readStatusButton.textContent = 'Change Status';
-  $readStatusButton.addEventListener('click', () => { book.read = !book.read;
+  $readStatusButton.addEventListener('click', () => { 
+    book.read = !book.read;
     updateTable();
   })
   $readStatusTd.appendChild($readStatusButton);
@@ -96,6 +129,7 @@ const createDeleteTd = index => {
   let $deleteTd = document.createElement('td');
   let $deleteButton = document.createElement('button');
   $deleteButton.textContent = 'Delete';
+  $deleteButton.classList.add('btn-danger');
 
   $deleteButton.addEventListener('click', () => {
     myLibrary.splice(index, 1);
@@ -129,17 +163,16 @@ document.addEventListener('DOMContentLoaded', () => {
   $newButton.addEventListener('click', toggleHiddenElements);
 
   $submitButton.addEventListener('click', () => {
-    // if validation
+    if (validateForm() == false) return;
     addBookToLibrary();
     updateTable();
     toggleHiddenElements();
-    
-    // some more stuff
+    clearForm();
   })
 
   $returnButon.addEventListener('click', () => {
     toggleHiddenElements();
-    //
+    clearForm();
   });
 
   if(!localStorage.getItem('library')) {

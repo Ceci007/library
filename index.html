@@ -28,8 +28,8 @@
           <td>AuthorData</td>
           <td>PagesData</td>
           <td>ReadData</td>
-          <td><button class="btn">Change status</button></td>
-          <td><button class="btn">Delete</button></td>
+          <td><button class="btn-change">Change status</button></td>
+          <td><button class="btn-danger">Delete</button></td>
         </tbody>
       </table>
     </div>
@@ -37,7 +37,7 @@
       <h2>Adding Books</h2>
       <input type="text" id="title" placeholder="Title" />
       <input type="text" id="author" placeholder="Author" /> 
-      <input type="number" id="pages" placeholder="pages" min="1" />
+      <input type="number" id="pages" placeholder="pages" min="0" />
       <fieldset role="radiogroup">
         <legend>Did you Read this book?</legend>
         <label for="yes">
@@ -45,7 +45,7 @@
           <span>yes</span>
         </label>
         <label for="no">
-          <input type="radio" id="no" name="read" value="yes" />
+          <input type="radio" id="no" name="read" value="no" />
           <span>no</span>
         </label>
       </fieldset>
