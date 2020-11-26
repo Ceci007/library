@@ -1,6 +1,6 @@
-*, 
-*:before,
-*:after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -28,13 +28,14 @@ header {
 }
 
 header > * {
-  margin-bottom: 0em;
+  margin-bottom: 0;
 }
 
 h1 {
   font-size: 3em;
   font-weight: 800;
 }
+
 main {
   display: flex;
   flex-direction: column;
@@ -101,22 +102,24 @@ fieldset {
   text-align: center;
 }
 
+input {
+  margin: 10px 0;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input {
-  margin: 10px 0;
-}
-
-input[type=text], input[type=number] {
+input[type=text],
+input[type=number] {
   border: none;
   padding: 10px;
 }
 
-input[type=text]:focus, input[type=number]:focus {
+input[type=text]:focus,
+input[type=number]:focus {
   outline: none;
 }
 
