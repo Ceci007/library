@@ -30,7 +30,7 @@ const $pagesInput = $form.querySelector('#pages');
 const $submitButton = $form.querySelector('#submit');
 const $returnButon = $form.querySelector('#return');
 
-function Book(title, author, pages, read) {
+const Book = (title, author, pages, read) => {
   // the constructor...
   this.title = title;
   this.author = author;
