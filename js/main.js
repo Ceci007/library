@@ -36,7 +36,7 @@ const Book = (title, author, pages, read) => {
   this.author = author;
   this.pages = pages;
   this.read = read;
-}
+};
 
 const getReadValue = () => {
   if ($form.querySelector('input[name="read"]:checked').value === 'yes') {
