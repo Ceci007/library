@@ -1,0 +1,141 @@
+*, 
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #5ac099;
+  --color-primary-dark: #3c8066;
+  --color-table: #285544;
+  --color-table-text: #424242;
+  --color-error-text: #d5001f;
+  --color-error-bg: #e56678;
+}
+
+body {
+  font-size: 20px;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  color: #fff;
+  background-color: var(--color-primary-dark);
+}
+
+header {
+  text-align: center;
+  color: var(--color-primary);
+}
+
+header > * {
+  margin-bottom: 0em;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 800;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+.new {
+  width: 120px;
+  margin: 1em 0;
+}
+
+.table {
+  width: 1000px;
+}
+
+table {
+  width: 100%;
+  background-color: var(--color-table);
+  color: #f8f8f2;
+  border-spacing: 0;
+  border-bottom: 5px solid var(--color-table);
+}
+
+th {
+  padding: 10px 10px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+tbody {
+  background-color: #fefefe;
+  color: var(--color-table-text);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset label {
+  margin-left: 1em;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-group {
+  margin-top: 2em;
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  margin: 10px 0;
+}
+
+input[type=text] {
+  border: none;
+  padding: 10px;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+.btn {
+  border: none;
+  background-color: #fff;
+  color: var(--color-table-text);
+  padding: 10px 25px;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.errorInput {
+  border: 2px solid var(--color-error-text);
+  background-color: var(--color-error-bg);
+}
+
+.errorText {
+  color: var(--color-error-text);
+}
