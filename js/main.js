@@ -58,6 +58,24 @@ const clearForm = () => {
   $authorInput.value = null;
 }
 
+const updateTable = () => {
+  $tbody.textContent = "";
+  myLibrary.forEach( (book, index) => {
+     let $row = document.createElement('tr');
+     Object.keys(book).forEach( prop => {
+      let $newTd = document.createElement('td');
+      $newTd.textContent = book[prop];
+      $row.appendChild($newTd);
+     })
+     $tbody.appendChild($row);
+  })
+  populateStorage();
+}
+
+const createEditTd = () => {
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   $newButton.addEventListener('click', toggleHiddenElements);
 
@@ -65,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // if validation
     addBookToLibrary();
     toggleHiddenElements();
+    updateTable();
     // some more stuff
   })
 
